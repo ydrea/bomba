@@ -1,13 +1,18 @@
-import React, { Children, useCallback } from 'react';
-import logo from './logo.svg';
+import React, { ReactNode, useCallback } from 'react';
+// import logo from './logo.svg';
 import './App.css';
 
-// export const Box: React.FunctionComponent = (children)=>{
-// return (
-// <>  
-// {children}
-// </>
-// )}
+interface BaseLayoutProps {
+  children?: ReactNode;
+}
+
+
+export const Box: React.FC<BaseLayoutProps> =({children}) => {
+
+return (
+<div>  {children}
+</div>
+)}
 
 const List: React.FunctionComponent<{
   items: string[];
@@ -30,7 +35,7 @@ function App() {
     <div className="App">
       <header className="App-header">
       </header>
-      {/* <Box /> */}
+      <Box />
       <List items={['1', 'two', 'tli']} onClick={onListClick} />
     </div>
   );
