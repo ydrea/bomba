@@ -1,24 +1,37 @@
-import React from 'react';
+import React, { Children, useCallback } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+// export const Box: React.FunctionComponent = (children)=>{
+// return (
+// <>  
+// {children}
+// </>
+// )}
+
+const List: React.FunctionComponent<{
+  items: string[];
+  onClick?: (item: string)=> void
+}> 
+= ({items, onClick})=>{
+return (
+  <ul>
+{items.map((i, index)=>
+  <li key={index} onClick={()=>onClick?.(i)} >{i}</li>
+)}
+  </ul>
+)
+}
+
 function App() {
+  const onListClick  = useCallback((i: string)=>{
+    alert(i)}, []);
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
       </header>
+      {/* <Box /> */}
+      <List items={['1', 'two', 'tli']} onClick={onListClick} />
     </div>
   );
 }
